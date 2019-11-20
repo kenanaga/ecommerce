@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="SQLite - database.sqlite" uuid="36dca6eb-aeae-4244-9ee9-9ff77c1313b5">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/database/database.sqlite</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="MySQL - laravel_ecommerce@localhost" uuid="1ca6ca8c-f04d-4336-ac83-abc3f78faaaa">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/laravel_ecommerce</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="ecommerce@localhost" uuid="34ac8b48-349a-4bbd-be7b-5092deca23cb">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/ecommerce</jdbc-url>
+    </data-source>
+  </component>
+</project>
