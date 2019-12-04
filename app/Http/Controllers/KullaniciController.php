@@ -16,6 +16,22 @@ class KullaniciController extends Controller
        return view('kullanici.oturumac');
     }
 
+    public function giris(){
+        $this->validate(request(), [
+            'email' =>  'required|email',
+            'sifre' =>  'required'
+        ]);
+        if (auth()->attempt(['email'=>request('email'),'password'=>request('sifre')],request()->has('benihatirla')))
+        {
+            request()->session()->regenerate();
+            return redirect()->intended('/');
+        }else{
+            $errors=['email'=>'Hatali giris'];
+            return back()->withErrors($errors);
+
+        }
+    }
+
     public function kaydol_form(){
         return view('kullanici.kaydol');
     }
@@ -40,5 +56,30 @@ class KullaniciController extends Controller
        auth()->login($kullanici);
 
        return redirect()->route('anasayfa');
+    }
+
+    public function aktiflestir($anahtar){
+        $kullanici=Kullanici::where('aktivasyon_anahtari',$anahtar)->first();
+        if(!is_null($kullanici))
+        {
+            $kullanici->aktivasyon_anahtari=null;
+            $kullanici->aktif_mi=1;
+            $kullanici->save();
+            return redirect()->to('/')
+                ->with('mesaj','Kullanici kaydiniz aktiflestirildi')
+                ->with('mesaj_tur','success');
+        }
+        else{
+            return redirect()->to('/')
+                ->with('mesaj','Kullanici kaydiniz aktiflestirilemedi')
+                ->with('mesaj_tur','warning');
+        }
+    }
+
+    public function oturumukapat(){
+        auth()->logout();
+        request()->session()->flush();
+        request()->session()->regenerate();
+        return redirect()->route('anasayfa');
     }
 }
