@@ -9,13 +9,14 @@ Route::get('/urun/{slug_urunadi}', 'UrunController@index')->name('urun');
 Route::post('/ara','UrunController@ara')->name('urun_ara');
 Route::get('/ara','UrunController@ara')->name('urun_ara');
 
+Route::group(['middleware'=>'auth'],function (){
+    Route::get('/odeme', 'OdemeController@index')->name('odeme');
+    Route::get('/siparisler', 'SiparislerController@index')->name('siparisler');
+    Route::get('/siparisler/{id}', 'SiparislerController@detay')->name('siparis');
+});
+
 Route::get('/sepet', 'SepetController@index')->name('sepet');
 
-Route::get('/odeme', 'OdemeController@index')->name('odeme');
-
-Route::get('/siparisler', 'SiparislerController@index')->name('siparisler');
-
-Route::get('/siparisler/{id}', 'SiparislerController@detay')->name('siparis');
 
 Route::group(['prefix'=>'kullanici'],function(){
 
